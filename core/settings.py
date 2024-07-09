@@ -24,6 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env(
     LOGLEVEL=(str, "INFO"),
     DEBUG_SQL=(bool, False),
+    ATOMIC_REQUESTS=(bool, True),
 )
 env.read_env(os.path.join(BASE_DIR, ".env"))
 
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'user.apps.UserConfig',
 ]
 
 MIDDLEWARE = [
@@ -88,6 +90,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
+        "ATOMIC_REQUESTS": env("ATOMIC_REQUESTS"),
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
