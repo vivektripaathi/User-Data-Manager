@@ -1,0 +1,8 @@
+asgiref
+Django
+django-environ
+django-log-request-id
+pip
+setuptools
+sqlparse
+typing_extensions
